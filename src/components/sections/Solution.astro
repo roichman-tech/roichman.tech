@@ -1,0 +1,65 @@
+---
+import Section from '../Section.astro';
+
+const pillars = [
+  {
+    title: 'Presença',
+    body: 'Páginas claras, objetivas e focadas em gerar contatos.',
+  },
+  {
+    title: 'Rastreamento',
+    body: 'Dados que mostram exatamente o que está funcionando e o que está sendo perdido.',
+  },
+  {
+    title: 'Aquisição',
+    body: 'Anúncios conectados a resultados reais, não apenas alcance.',
+  },
+  {
+    title: 'Sistemas',
+    body: 'Softwares personalizados que organizam e aceleram sua operação.',
+  },
+];
+---
+
+<Section id="solucao" label="Solução">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+    <div class="col-span-12 lg:col-span-7">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Uma base digital completa, construída com precisão.
+      </h2>
+    </div>
+
+    <div class="col-span-12 lg:col-span-5">
+      <p class="text-base md:text-lg leading-relaxed text-gray">
+        Nós estruturamos os elementos que sua empresa precisa para atrair, medir e converter
+        clientes com consistência. Tudo funciona junto — como um sistema.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-12 border-t border-border md:mt-20">
+    {
+      pillars.map((pillar, i) => {
+        const isMdLeft = i % 2 === 0;
+        const mdPadding = isMdLeft ? 'md:pl-0 md:pr-8' : 'md:pl-8 md:pr-0';
+        const lgPadding =
+          i === 0 ? 'lg:pl-0 lg:pr-10' : i === 3 ? 'lg:pl-10 lg:pr-0' : 'lg:px-10';
+        const mdBorder = isMdLeft ? 'md:border-r' : '';
+        const lgBorder = i < pillars.length - 1 ? 'lg:border-r' : '';
+        return (
+          <div
+            class={`col-span-12 border-b border-border py-10 md:col-span-6 md:py-12 lg:col-span-3 lg:py-14 ${mdPadding} ${lgPadding} ${mdBorder} ${lgBorder}`}
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+            <h3 class="mt-6 text-xl font-semibold tracking-tight text-black md:text-2xl">
+              {pillar.title}
+            </h3>
+            <p class="mt-4 text-sm leading-relaxed text-gray md:text-base">{pillar.body}</p>
+          </div>
+        );
+      })
+    }
+  </div>
+</Section>

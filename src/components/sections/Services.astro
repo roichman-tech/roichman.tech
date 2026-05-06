@@ -1,0 +1,105 @@
+---
+import Section from '../Section.astro';
+
+const services = [
+  {
+    title: 'Landing pages de conversão',
+    description: 'Páginas estruturadas para transformar visitantes em clientes.',
+    items: [
+      'Estrutura de mensagem',
+      'Hierarquia visual',
+      'Captação de leads',
+      'Design responsivo',
+      'Desenvolvimento orientado a performance',
+    ],
+    cta: 'Construir uma página melhor',
+  },
+  {
+    title: 'Rastreamento e análise de visitantes',
+    description: 'Entenda de onde vêm seus clientes e o que eles fazem.',
+    items: [
+      'Configuração de analytics',
+      'Rastreamento de conversões',
+      'Eventos e comportamento',
+      'Insights de uso',
+      'Relatórios claros',
+    ],
+    cta: 'Melhorar rastreamento',
+  },
+  {
+    title: 'Estrutura de anúncios',
+    description: 'Campanhas organizadas para gerar resultado, não só tráfego.',
+    items: [
+      'Estrutura de campanhas',
+      'Integração com páginas',
+      'Metas de conversão',
+      'Revisão de performance',
+      'Ajustes contínuos',
+    ],
+    cta: 'Organizar campanhas',
+  },
+  {
+    title: 'Sistemas personalizados',
+    description: 'Ferramentas feitas para o seu negócio operar melhor.',
+    items: [
+      'Painéis de controle',
+      'Sistemas de agendamento',
+      'Portais de clientes',
+      'Automações',
+      'Softwares sob medida',
+    ],
+    cta: 'Discutir um sistema',
+  },
+];
+---
+
+<Section id="servicos" label="Serviços">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-6">
+    <div class="col-span-12 lg:col-span-7">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Serviços pensados para funcionar em conjunto.
+      </h2>
+    </div>
+    <div class="col-span-12 lg:col-span-5">
+      <p class="text-base md:text-lg leading-relaxed text-gray">
+        Cada parte resolve um problema. Juntas, criam um sistema completo.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-16 border-t border-border md:mt-20">
+    {
+      services.map((service, i) => (
+        <article class="grid grid-cols-12 gap-x-6 gap-y-8 border-b border-border py-12 md:py-16">
+          <div class="col-span-12 lg:col-span-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+            <h3 class="mt-6 text-2xl font-semibold tracking-tight text-black md:text-3xl">
+              {service.title}
+            </h3>
+            <p class="mt-5 max-w-md text-base leading-relaxed text-gray">{service.description}</p>
+          </div>
+
+          <div class="col-span-12 lg:col-span-7 lg:pl-10">
+            <ul class="border-t border-border">
+              {service.items.map((item) => (
+                <li class="border-b border-border py-3 text-sm text-black md:text-base">
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#contato"
+              class="mt-8 inline-flex items-center gap-3 text-sm font-semibold tracking-tight text-black transition-colors duration-150 hover:text-gray"
+            >
+              {service.cta}
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,45 @@
+---
+import Container from '../Container.astro';
+import Button from '../Button.astro';
+---
+
+<section class="pt-20 pb-24 md:pt-28 md:pb-32 lg:pt-36 lg:pb-40">
+  <Container>
+    <div class="grid grid-cols-12 gap-x-6 gap-y-16 lg:gap-y-0">
+      <div class="col-span-12 lg:col-span-7">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05] text-black">
+          Software para deixar seu negócio mais claro, mais estruturado e mais fácil de crescer.
+        </h1>
+
+        <p class="mt-8 max-w-xl text-base md:text-lg leading-relaxed text-gray">
+          A Roichman Tech desenvolve páginas de conversão, sistemas de rastreamento, estrutura
+          de anúncios e softwares personalizados para empresas que precisam de mais do que
+          “estar online”.
+        </p>
+
+        <p class="mt-6 max-w-xl text-sm md:text-base leading-relaxed text-gray">
+          Nós unimos estratégia, design, dados e desenvolvimento para construir sistemas que
+          geram leads, mostram o que funciona e dão controle real sobre o seu crescimento
+          digital.
+        </p>
+
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Button href="#contato" variant="primary">Solicitar uma consultoria</Button>
+          <Button href="#servicos" variant="secondary">Ver serviços</Button>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-5 lg:pl-10">
+        <div class="grid aspect-square w-full grid-cols-4 grid-rows-4 border border-border">
+          {
+            Array.from({ length: 16 }).map((_, i) => (
+              <div
+                class={`border-border ${i % 4 !== 3 ? 'border-r' : ''} ${i < 12 ? 'border-b' : ''}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

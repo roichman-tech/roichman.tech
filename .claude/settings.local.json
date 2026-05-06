@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun create *)",
+      "Bash(bunx astro *)",
+      "Bash(bun add *)",
+      "Bash(bun run *)",
+      "Bash(curl -s -o /dev/null -w \"page_status=%{http_code} time=%{time_total}\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s -X POST http://localhost:4321/api/lead -H \"Content-Type: application/json\" -d '{\"name\":\"Teste\",\"email\":\"a@b.co\",\"company\":\"X\",\"message\":\"oi\"}' -w \"\\\\napi_status=%{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:4321/api/lead -H \"Content-Type: application/json\" -d '{\"name\":\"\",\"email\":\"bad\",\"message\":\"\"}' -w \"\\\\napi_status=%{http_code}\\\\n\")",
+      "Bash(curl -s http://localhost:4321/ -o /dev/null -w \"still_alive=%{http_code}\\\\n\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

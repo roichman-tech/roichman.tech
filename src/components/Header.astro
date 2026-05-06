@@ -1,0 +1,38 @@
+---
+import Container from './Container.astro';
+import Button from './Button.astro';
+
+const navLinks = [
+  { href: '#solucao', label: 'Solução' },
+  { href: '#servicos', label: 'Serviços' },
+  { href: '#processo', label: 'Processo' },
+  { href: '#credibilidade', label: 'Credibilidade' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border bg-white">
+  <Container>
+    <div class="flex h-16 items-center justify-between md:h-20">
+      <a href="#" class="flex items-center" aria-label="Roichman Tech — início">
+        <img src="/logo.webp" alt="Roichman Tech" class="h-7 w-auto md:h-8" />
+      </a>
+
+      <nav class="hidden md:flex md:items-center md:gap-10">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm text-black transition-colors duration-150 hover:text-gray"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="hidden md:block">
+        <Button href="#contato" variant="primary">Solicitar consultoria</Button>
+      </div>
+    </div>
+  </Container>
+</header>

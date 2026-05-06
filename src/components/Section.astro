@@ -1,0 +1,27 @@
+---
+import Container from './Container.astro';
+
+interface Props {
+  id?: string;
+  label?: string;
+  class?: string;
+  divider?: boolean;
+}
+const { id, label, class: className = '', divider = true } = Astro.props;
+---
+
+<section
+  id={id}
+  class={`${divider ? 'border-t border-border' : ''} py-14 md:py-24 lg:py-32 ${className}`}
+>
+  <Container>
+    {
+      label && (
+        <p class="mb-10 text-xs font-semibold uppercase tracking-[0.16em] text-gray md:mb-14">
+          {label}
+        </p>
+      )
+    }
+    <slot />
+  </Container>
+</section>

@@ -1,0 +1,125 @@
+---
+import Section from '../Section.astro';
+import Button from '../Button.astro';
+---
+
+<Section id="contato" label="Contato">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-16 lg:gap-y-0">
+    <div class="col-span-12 lg:col-span-5">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Vamos entender o que o seu negócio realmente precisa.
+      </h2>
+
+      <p class="mt-8 max-w-md text-base md:text-lg leading-relaxed text-gray">
+        Seja uma página, um sistema de rastreamento, campanhas ou um software completo, o
+        primeiro passo é identificar o que está travando o seu crescimento hoje.
+      </p>
+    </div>
+
+    <div class="col-span-12 lg:col-span-7 lg:pl-10">
+      <form id="lead-form" class="space-y-10" novalidate>
+        <div>
+          <label for="name" class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+            Nome
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="mt-2 block w-full border-0 border-b border-black bg-transparent py-3 text-base text-black outline-none transition-[border-width] duration-150 placeholder:text-gray focus:border-b-2"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="mt-2 block w-full border-0 border-b border-black bg-transparent py-3 text-base text-black outline-none transition-[border-width] duration-150 placeholder:text-gray focus:border-b-2"
+          />
+        </div>
+
+        <div>
+          <label for="company" class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+            Empresa
+          </label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            autocomplete="organization"
+            class="mt-2 block w-full border-0 border-b border-black bg-transparent py-3 text-base text-black outline-none transition-[border-width] duration-150 placeholder:text-gray focus:border-b-2"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="text-xs font-semibold uppercase tracking-[0.16em] text-gray">
+            Descreva seu projeto
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="mt-2 block w-full resize-none border-0 border-b border-black bg-transparent py-3 text-base text-black outline-none transition-[border-width] duration-150 placeholder:text-gray focus:border-b-2"
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+          <Button type="submit" variant="primary">Solicitar uma consultoria</Button>
+          <p id="form-status" class="text-sm text-gray" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div id="lead-success" class="hidden">
+        <p class="border-t border-border pt-8 text-base text-black md:text-lg">
+          Obrigado. Recebemos sua mensagem e retornaremos em breve.
+        </p>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement | null;
+  const success = document.getElementById('lead-success');
+  const status = document.getElementById('form-status');
+
+  if (form && success && status) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = 'Enviando...';
+      status.className = 'text-sm text-gray';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (!res.ok) {
+          const body = (await res.json().catch(() => ({}))) as { error?: string };
+          status.textContent = body.error ?? 'Não foi possível enviar. Tente novamente.';
+          status.className = 'text-sm text-black';
+          return;
+        }
+
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+      } catch {
+        status.textContent = 'Falha de conexão. Tente novamente.';
+        status.className = 'text-sm text-black';
+      }
+    });
+  }
+</script>

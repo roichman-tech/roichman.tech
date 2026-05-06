@@ -1,0 +1,52 @@
+---
+import Section from '../Section.astro';
+
+const proofs = [
+  {
+    title: 'Escopo claro',
+    body: 'Tudo começa com objetivos e estrutura definidos.',
+  },
+  {
+    title: 'Foco em performance',
+    body: 'Velocidade, usabilidade e dados fazem parte do processo.',
+  },
+  {
+    title: 'Lógica de negócio primeiro',
+    body: 'Nada é feito por estética. Tudo tem função.',
+  },
+  {
+    title: 'Visão de longo prazo',
+    body: 'Não é só lançar — é construir algo que continua gerando resultado.',
+  },
+];
+---
+
+<Section id="credibilidade" label="Credibilidade">
+  <div class="grid grid-cols-12 gap-x-6">
+    <div class="col-span-12 lg:col-span-8">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Construído com o padrão que negócios sérios exigem.
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-1 border-t border-border md:mt-20 md:grid-cols-2">
+    {
+      proofs.map((proof, i) => {
+        const isLeft = i % 2 === 0;
+        const padding = isLeft ? 'md:pl-0 md:pr-10' : 'md:pl-10 md:pr-0';
+        const borderRight = isLeft ? 'md:border-r' : '';
+        return (
+          <div class={`border-b border-border py-10 md:py-14 ${padding} ${borderRight}`}>
+            <h3 class="text-xl font-semibold tracking-tight text-black md:text-2xl">
+              {proof.title}
+            </h3>
+            <p class="mt-5 max-w-md text-sm leading-relaxed text-gray md:text-base">
+              {proof.body}
+            </p>
+          </div>
+        );
+      })
+    }
+  </div>
+</Section>

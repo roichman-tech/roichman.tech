@@ -1,0 +1,69 @@
+---
+import Section from '../Section.astro';
+import Button from '../Button.astro';
+
+const steps = [
+  {
+    title: 'Diagnóstico',
+    body: 'Entendemos seu negócio, seu público e seus pontos de falha.',
+  },
+  {
+    title: 'Estrutura',
+    body: 'Definimos o sistema antes de construir qualquer coisa.',
+  },
+  {
+    title: 'Construção',
+    body: 'Desenvolvimento focado em clareza, performance e usabilidade.',
+  },
+  {
+    title: 'Medição',
+    body: 'Rastreamos como as pessoas interagem com o sistema.',
+  },
+  {
+    title: 'Evolução',
+    body: 'Ajustamos com base em dados reais, não suposições.',
+  },
+];
+---
+
+<Section id="processo" label="Processo">
+  <div class="grid grid-cols-12 gap-x-6">
+    <div class="col-span-12 lg:col-span-8">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Um processo claro, do diagnóstico até a evolução.
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-1 gap-y-0 border-t border-border md:mt-20 lg:grid-cols-5 lg:border-t-0">
+    {
+      steps.map((step, i) => {
+        const isFirst = i === 0;
+        const isLast = i === steps.length - 1;
+        const lgPadding = isFirst
+          ? 'lg:pl-0 lg:pr-8'
+          : isLast
+            ? 'lg:pl-8 lg:pr-0'
+            : 'lg:px-8';
+        const lgBorder = isLast ? '' : 'lg:border-r';
+        return (
+          <div
+            class={`border-b border-border py-10 lg:border-b-0 lg:border-t lg:py-12 ${lgPadding} ${lgBorder}`}
+          >
+            <p class="text-5xl font-semibold tracking-tight text-border md:text-6xl lg:text-7xl">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+            <h3 class="mt-6 text-lg font-semibold tracking-tight text-black md:text-xl">
+              {step.title}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray md:text-base">{step.body}</p>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <div class="mt-16">
+    <Button href="#contato" variant="primary">Começar com um diagnóstico</Button>
+  </div>
+</Section>

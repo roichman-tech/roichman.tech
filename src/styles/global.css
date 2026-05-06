@@ -1,0 +1,79 @@
+/*
+ * Roichman Tech — Brand System
+ * STRICT RULES (do not deviate):
+ *  - Colors: white, black, gray, border ONLY. No blues, no accents.
+ *  - Font weights: regular (400) and semibold (600) ONLY.
+ *  - No gradients. No shadows beyond `subtle`. No decorative icons.
+ *  - Tailwind defaults are wiped via `--*: initial` so off-brand utilities
+ *    (e.g. bg-blue-500, font-bold, shadow-lg) WILL NOT COMPILE.
+ */
+
+@import "tailwindcss";
+@import "@fontsource-variable/inter/index.css";
+
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+  --font-weight-*: initial;
+
+  --color-white: #ffffff;
+  --color-black: #0a0a0a;
+  --color-gray: #595959;
+  --color-border: #e5e5e5;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+
+  --radius-sm: 2px;
+  --radius-DEFAULT: 4px;
+
+  --shadow-subtle: 0 1px 2px rgba(10, 10, 10, 0.04);
+
+  --container-max: 1280px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-black);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+  }
+
+  ::selection {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}

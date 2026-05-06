@@ -1,0 +1,71 @@
+---
+import Container from './Container.astro';
+
+const year = new Date().getFullYear();
+
+const sections = [
+  {
+    title: 'Serviços',
+    links: [
+      { href: '#servicos', label: 'Landing pages de conversão' },
+      { href: '#servicos', label: 'Rastreamento e análise' },
+      { href: '#servicos', label: 'Estrutura de anúncios' },
+      { href: '#servicos', label: 'Sistemas personalizados' },
+    ],
+  },
+  {
+    title: 'Empresa',
+    links: [
+      { href: '#solucao', label: 'Solução' },
+      { href: '#processo', label: 'Processo' },
+      { href: '#credibilidade', label: 'Credibilidade' },
+      { href: '#contato', label: 'Contato' },
+    ],
+  },
+  {
+    title: 'Contato',
+    links: [
+      { href: 'mailto:contato@roichman.tech', label: 'contato@roichman.tech' },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-border">
+  <Container>
+    <div class="grid grid-cols-12 gap-x-6 gap-y-12 py-16 md:py-20">
+      <div class="col-span-12 md:col-span-5">
+        <img src="/logo.webp" alt="Roichman Tech" class="h-8 w-auto" />
+        <p class="mt-6 max-w-md text-sm leading-relaxed text-gray">
+          Sistemas digitais para negócios que precisam de clareza, controle e crescimento real.
+        </p>
+      </div>
+
+      {
+        sections.map((section) => (
+          <div class="col-span-6 md:col-span-2 md:col-start-auto">
+            <p class="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-black">
+              {section.title}
+            </p>
+            <ul class="space-y-3">
+              {section.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-gray transition-colors duration-150 hover:text-black"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="border-t border-border py-6">
+      <p class="text-xs text-gray">&copy; {year} Roichman Tech. Todos os direitos reservados.</p>
+    </div>
+  </Container>
+</footer>

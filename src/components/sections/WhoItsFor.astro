@@ -1,0 +1,60 @@
+---
+import Section from '../Section.astro';
+
+const blocks = [
+  {
+    title: 'Clínicas',
+    body: 'Captação de pacientes, agendamentos e organização do fluxo.',
+  },
+  {
+    title: 'Advogados e escritórios',
+    body: 'Presença profissional, geração de contatos e organização de demandas.',
+  },
+  {
+    title: 'Restaurantes',
+    body: 'Campanhas, reservas e estrutura para atrair clientes com consistência.',
+  },
+  {
+    title: 'Profissionais independentes',
+    body: 'Posicionamento claro, geração de leads e automação.',
+  },
+];
+---
+
+<Section id="para-quem" label="Para quem é">
+  <div class="grid grid-cols-12 gap-x-6">
+    <div class="col-span-12 lg:col-span-8">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-black">
+        Para empresas que precisam de clareza, clientes e sistemas melhores.
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-12 border-t border-border md:mt-20">
+    {
+      blocks.map((block, i) => {
+        const isMdLeft = i % 2 === 0;
+        const mdPadding = isMdLeft ? 'md:pl-0 md:pr-8' : 'md:pl-8 md:pr-0';
+        const lgPadding =
+          i === 0 ? 'lg:pl-0 lg:pr-10' : i === 3 ? 'lg:pl-10 lg:pr-0' : 'lg:px-10';
+        const mdBorder = isMdLeft ? 'md:border-r' : '';
+        const lgBorder = i < blocks.length - 1 ? 'lg:border-r' : '';
+        return (
+          <div
+            class={`col-span-12 border-b border-border py-10 md:col-span-6 md:py-12 lg:col-span-3 lg:py-14 ${mdPadding} ${lgPadding} ${mdBorder} ${lgBorder}`}
+          >
+            <h3 class="text-xl font-semibold tracking-tight text-black md:text-2xl">
+              {block.title}
+            </h3>
+            <p class="mt-4 text-sm leading-relaxed text-gray md:text-base">{block.body}</p>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <p class="mt-16 max-w-2xl text-base leading-relaxed text-gray md:mt-20 md:text-lg">
+    O setor muda. O princípio não: sua presença digital precisa ser estruturada, mensurável
+    e útil.
+  </p>
+</Section>
